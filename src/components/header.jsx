@@ -8,13 +8,16 @@ export function Header() {
   const navigate = useNavigate();
 
   return (
-    <nav className="relative z-10 flex items-center overflow-hidden justify-between px-4 py-4 md:px-12 max-w-[1421px] mx-auto h-22 ">
+    <nav className="relative z-10 flex items-center overflow-x-hidden justify-between px-4 py-4 md:px-12 max-w-[1421px] mx-auto h-22 ">
       <div className="flex items-center h-full w-full ">
         <NetflixLogo className="h-10 w-auto" />
       </div>
-      <div className="flex gap-2 items-center">
+      <div className="flex gap-2 items-center relative z-40 ">
         <SearchBar />
-        <button className="bg-red-600 hover:bg-red-700 transition-colors text-white px-4 py-1.5 rounded text-sm font-bold">
+        <button
+          onClick={() => navigate("/home")}
+          className="bg-red-600 hover:bg-red-700 transition-colors text-white px-4 py-1.5 rounded text-sm font-bold"
+        >
           Guest
         </button>
         <button

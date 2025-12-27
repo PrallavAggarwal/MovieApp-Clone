@@ -4,7 +4,7 @@ export function Middle() {
   const navigate = useNavigate();
 
   return (
-    <div className="relative z-10  flex flex-col items-center justify-center h-[80%] px-4 text-center max-w-4xl mx-auto">
+    <div className="relative z-10 bordr flex flex-col items-center justify-center h-[80%] px-4 text-center max-w-4xl mx-auto">
       <h1 className="text-3xl md:text-5xl lg:text-6xl font-black mb-4 leading-tight text-white drop-shadow-2xl w-4/5">
         Unlimited movies, TV shows, and more
       </h1>

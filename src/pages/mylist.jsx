@@ -36,6 +36,7 @@ export function MyList() {
                       src={movie.primaryImage.url}
                       alt={movie.primaryTitle}
                       className="rounded-md h-full w-[90%] object-cover group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
                     />
                   </div>{" "}
                 </div>

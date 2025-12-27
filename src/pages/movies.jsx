@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { filterMovies } from "../utils/queryOptions/topmovies";
 import { useNavigate } from "react-router-dom";
+import { PageLoader } from "../components/loader";
 
 export function Movies() {
   let filter = "MOVIE";
@@ -13,7 +14,7 @@ export function Movies() {
   return (
     <div className="bg-black min-h-screen h-auto overflow-y-auto text-white px-3 py-3">
       {isSuccess && (
-        <div className="grid md:grid-cols-4 lg:grid-cols-7 grid-flow-row grid-cols-2 gap-2">
+        <div className="grid md:grid-cols-3 lg:grid-cols-5 grid-flow-row grid-cols-2 gap-2">
           {data.titles.map((movie) => (
             <div
               key={movie.id}
@@ -30,13 +31,24 @@ export function Movies() {
                     src={movie.primaryImage.url}
                     alt={movie.primaryTitle}
                     className="rounded-md h-full w-[90%] object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
                   />
                 </div>{" "}
               </div>
               <p className=" text-sm text-gray-300">{movie.primaryTitle}</p>
             </div>
           ))}
-          {isError && <div>Error fetching data</div>}
+        </div>
+      )}
+
+      {isError && (
+        <div className="h-screen w-screen bg-black font-semibold flex justify-center items-center text-gray-300 text-3xl">
+          Error fetching data
+        </div>
+      )}
+      {isLoading && (
+        <div className="h-screen w-screen">
+          <PageLoader />
         </div>
       )}
     </div>

@@ -27,6 +27,7 @@ export function SignUp() {
     } catch (error) {
       console.error("Error during login:", error);
       logout();
+      alert("unable to signup");
       navigate("/");
       return error;
     }

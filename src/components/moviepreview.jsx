@@ -5,6 +5,7 @@ import { moviesById } from "../utils/queryOptions/topmovies";
 import { WatchlistContext } from "../context/watchListContext";
 import { useContext } from "react";
 import { useState } from "react";
+import { PageLoader } from "./loader";
 
 export function MoviePreview() {
   const { currentUser, toggleWatchlist, isInWatchlist } =
@@ -30,10 +31,10 @@ export function MoviePreview() {
           {/* Hero Movie Card Section */}
           <div className="relative max-w-6xl mx-auto px-4 pt-8">
             <div
-              className="cursor-pointer absolute rotate-45 z-40 top-15 right-10"
+              className="cursor-pointer absolute rotate-45 z-40 top-9 -right-10"
               onClick={() => navigate("/home")}
             >
-              <Cross size={32} stroke="0" fill="var(--color-neutral-400)" />
+              <Cross size={32} stroke="0" fill="var(--color-neutral-100)" />
             </div>
             <div className="relative w-full h-[650px] rounded-2xl overflow-hidden shadow-2xl">
               {/* Background Image */}
@@ -149,11 +150,15 @@ export function MoviePreview() {
                         ) : (
                           <Plus size={24} />
                         )}
-                        {!currentUser
-                          ? "Login to Add"
-                          : isInWatchlist(data.id)
-                            ? "In Watchlist"
-                            : "Add to Watchlist"}
+                        {!currentUser ? (
+                          <span onClick={() => navigate("/")}>
+                            "Login to Add"
+                          </span>
+                        ) : isInWatchlist(data.id) ? (
+                          "In Watchlist"
+                        ) : (
+                          "Add to Watchlist"
+                        )}
                       </button>
                       <button className="bg-white/10 backdrop-blur-md border border-white/20 px-8 py-4 rounded-xl font-bold flex items-center gap-2 hover:bg-white/20 transition-all">
                         <Play className="fill-white" size={20} /> Watch Trailer
@@ -173,6 +178,11 @@ export function MoviePreview() {
               </div>
             </div>
           </div>
+        </div>
+      )}
+      {isLoading && (
+        <div className=" h-screen w-screen">
+          <PageLoader />
         </div>
       )}
     </div>
